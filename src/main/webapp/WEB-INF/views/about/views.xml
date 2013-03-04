@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+    <definition extends="default" name="about">
+        <put-attribute name="localnav" value="/WEB-INF/views/about/localnav.jspx"/>
+    </definition>
+    
+    <definition extends="about" name="about/credits">
+        <put-attribute name="body" value="/WEB-INF/views/about/credits.jspx"/>
+    </definition>
+    
+    <definition extends="about" name="about/faq">
+        <put-attribute name="body" value="/WEB-INF/views/about/faq.jspx"/>
+    </definition>
+    
+    <definition extends="about" name="about/help">
+        <put-attribute name="body" value="/WEB-INF/views/about/help.jspx"/>
+    </definition>
+    
+    <definition extends="about" name="about/releases">
+        <put-attribute name="body" value="/WEB-INF/views/about/releases.jspx"/>
+    </definition>
+    
+</tiles-definitions>

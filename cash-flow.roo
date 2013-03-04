@@ -1,0 +1,42 @@
+// Meta
+project --topLevelPackage com.andrewswan.cashflow
+persistence setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+
+// Entities
+// -- Person
+entity --class ~.domain.Person --testAutomatically
+field string --fieldName fullName --notNull
+field string --fieldName openId --notNull
+field date --type java.util.Date --fieldName addedOn --notNull
+field date --type java.util.Date --fieldName activatedOn
+field string --fieldName email --notNull
+
+// -- Account
+entity --class ~.domain.Account --testAutomatically
+field string --fieldName name --notNull --sizeMax 40
+field number --fieldName startBalance --type java.math.BigDecimal
+field reference --fieldName owner --type ~.domain.Person --notNull
+field set --class ~.domain.Person --fieldName accounts --element ~.domain.Account
+
+// -- RecurrenceType
+enum type --class ~.domain.RecurrenceType
+enum constant --name ANNUALLY
+enum constant --name DAILY
+enum constant --name MONTHLY_BY_DATE
+enum constant --name NEVER
+enum constant --name QUARTERLY
+enum constant --name WEEKLY
+
+// -- MonetaryTransaction
+entity --class ~.domain.MonetaryTransaction
+field date --type java.util.Date --fieldName nextDate --notNull
+field number --fieldName amount --type java.math.BigDecimal --notNull
+field date --fieldName lastDate --type java.util.Date
+field number --fieldName recurrenceInterval --type java.lang.Integer
+field enum --fieldName recurrenceType --type ~.domain.RecurrenceType --notNull
+
+// Web Layer
+controller all --package ~.web
+
+// Eclipse config (after web packages added)
+perform eclipse

@@ -1,0 +1,63 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <script type="text/javascript">dojo.require('dijit.TitlePane');</script>
+    <div id="_title_div">
+        <spring:message code="label.monetarytransaction" var="entity_label"/>
+        <spring:message arguments="${entity_label}" code="entity.show" var="title_msg"/>
+        <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${title_msg}'}})); </script>
+        <c:if test="${not empty monetaryTransaction}">
+            <div id="roo_monetaryTransaction_description">
+                <label for="_description_id">Description:</label>
+                <div class="box" id="_description_id">
+                    <c:out value="${monetaryTransaction.description}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_nextDate">
+                <label for="_nextDate_id">Next Date:</label>
+                <div class="box" id="_nextDate_id">
+                    <fmt:formatDate pattern="${monetaryTransaction_nextDate_date_format}" value="${monetaryTransaction.nextDate}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_amount">
+                <label for="_amount_id">Amount:</label>
+                <div class="box" id="_amount_id">
+                    <c:out value="${monetaryTransaction.amount}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_lastDate">
+                <label for="_lastDate_id">Last Date:</label>
+                <div class="box" id="_lastDate_id">
+                    <fmt:formatDate pattern="${monetaryTransaction_lastDate_date_format}" value="${monetaryTransaction.lastDate}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_recurrenceInterval">
+                <label for="_recurrenceInterval_id">Recurrence Interval:</label>
+                <div class="box" id="_recurrenceInterval_id">
+                    <c:out value="${monetaryTransaction.recurrenceInterval}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_recurrenceType">
+                <label for="_recurrenceType_id">Recurrence Type:</label>
+                <div class="box" id="_recurrenceType_id">
+                    <c:out value="${monetaryTransaction.recurrenceType}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_account">
+                <label for="_account_id">Account:</label>
+                <div class="box" id="_account_id">
+                    <c:out value="${monetaryTransaction.account}"/>
+                </div>
+            </div>
+            <br/>
+        </c:if>
+        <c:if test="${empty monetaryTransaction}">
+            <spring:message arguments="${entity_label}" code="entity.not.found.single"/>
+        </c:if>
+    </div>
+</div>

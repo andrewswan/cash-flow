@@ -1,0 +1,15 @@
+<jsp:root
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:spring="http://www.springframework.org/tags"
+		xmlns:jsp="http://java.sun.com/JSP/Page"
+		version="2.0">
+	<jsp:output omit-xml-declaration="yes"/>
+
+	<!-- Creates the link to a CSS stylesheet -->
+	<jsp:directive.attribute name="relativePath" type="java.lang.String"
+	  required="true" description="The relative path to the CSS file"/>
+	
+	<spring:url value="${relativePath}" var="css_url"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="${css_url}" />	
+    
+ </jsp:root>

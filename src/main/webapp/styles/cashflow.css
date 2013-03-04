@@ -1,0 +1,135 @@
+/* 
+  Colours:
+	  C0C0C0 = grey
+	  FFFFFF = white 
+	  999966 = khaki 
+*/
+/* SITE SPECIFIC LAYOUT */
+    body {
+        margin: 0;
+        padding: 0;
+              
+        text-align: center;
+        
+        background: #C0C0C0;
+    }
+    div#page {
+        width: 780px;
+        
+        margin:  0 auto;
+        padding: 0;
+        
+        text-align: center;
+        
+        background: #C0C0C0;
+    }
+    
+    /* HEADER */
+        div#header {
+            margin: 0 0 5em 0;
+            padding: 10px 10px;
+            
+            color: white;
+            background: #999966;
+            
+            text-align: left;
+        }
+        div#branding {
+            float: left;
+            width: 40%;
+            
+            margin: 0;
+            padding: 10px 0 10px 10px;
+            
+            text-align: left;
+        }
+        div#username {
+            float: right;
+            width: 49%;
+            
+            margin: 0;
+            padding: 16px 20px 0 0;
+            
+            text-align: right;
+        }
+    /* END HEADER */
+    
+    
+    /* CONTENT */
+        div#content {
+            
+        }
+        
+        /* MAIN */
+            div#main {
+                
+            }
+        /* END MAIN */
+        
+        /* SUB */
+            div#sub {
+                
+            }
+        /* END SUB */
+        
+    /* END CONTENT */
+    
+    
+    /* FOOTER */
+        div#footer {
+            color: white;
+            background-color: #999966;
+        }
+        div#footer p {
+            margin: 0;
+            padding: 15px;
+            
+            font-size: 0.8em;
+        }
+    /* END FOOTER */
+    
+    div#nav a {
+    	font-size: 2em;
+    }
+/* END LAYOUT */
+
+
+/* UL.SUBNAV */
+    ul.subnav {
+        margin: 0;
+        padding: 0;
+        
+        font-size: 0.8em;
+        list-style: none;
+    }
+    ul.subnav li {
+        margin: 0 0 1em 0;
+        padding: 0;
+        
+        list-style: none;
+    }
+    ul.subnav li a,
+    ul.subnav li a:link,
+    ul.subnav li a:visited,
+    ul.subnav li a:active {
+        text-decoration: none;
+        font-weight: bold;
+        background-color: #C0C0C0;
+        color: #999966;
+    }
+    ul.subnav li a:hover {
+        text-decoration: underline;
+    }
+    ul.subnav li strong {
+        padding: 0 0 0 12px;
+        
+        background: url("../i/subnav-highlight.gif") left top no-repeat transparent;
+    }
+    ul.subnav li strong a,
+    ul.subnav li strong a:link,
+    ul.subnav li strong a:visited,
+    ul.subnav li strong a:active {
+        color: white;
+        background-color: #999966;
+    }
+/* END UL.SUBNAV */

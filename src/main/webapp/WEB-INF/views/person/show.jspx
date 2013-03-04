@@ -1,0 +1,63 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <script type="text/javascript">dojo.require('dijit.TitlePane');</script>
+    <div id="_title_div">
+        <spring:message code="label.person" var="entity_label"/>
+        <spring:message arguments="${entity_label}" code="entity.show" var="title_msg"/>
+        <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${title_msg}'}})); </script>
+        <c:if test="${not empty person}">
+            <div id="roo_person_administrator">
+                <label for="_administrator_id">Administrator:</label>
+                <div class="box" id="_administrator_id">
+                    <c:out value="${person.administrator}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_person_fullName">
+                <label for="_fullName_id">Full Name:</label>
+                <div class="box" id="_fullName_id">
+                    <c:out value="${person.fullName}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_person_openId">
+                <label for="_openId_id">Open Id:</label>
+                <div class="box" id="_openId_id">
+                    <c:out value="${person.openId}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_person_addedOn">
+                <label for="_addedOn_id">Added On:</label>
+                <div class="box" id="_addedOn_id">
+                    <fmt:formatDate pattern="${person_addedOn_date_format}" value="${person.addedOn}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_person_activatedOn">
+                <label for="_activatedOn_id">Activated On:</label>
+                <div class="box" id="_activatedOn_id">
+                    <fmt:formatDate pattern="${person_activatedOn_date_format}" value="${person.activatedOn}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_person_email">
+                <label for="_email_id">Email:</label>
+                <div class="box" id="_email_id">
+                    <c:out value="${person.email}"/>
+                </div>
+            </div>
+            <br/>
+            <div id="roo_person_accounts">
+                <label for="_accounts_id">Accounts:</label>
+                <div class="box" id="_accounts_id">
+                    <c:out value="${person.accounts}"/>
+                </div>
+            </div>
+            <br/>
+        </c:if>
+        <c:if test="${empty person}">
+            <spring:message arguments="${entity_label}" code="entity.not.found.single"/>
+        </c:if>
+    </div>
+</div>

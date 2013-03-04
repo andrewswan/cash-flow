@@ -1,0 +1,146 @@
+<html 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+ 	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:roo="urn:jsptagdir:/WEB-INF/tags"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:tiles="http://tiles.apache.org/tags-tiles"
+	>  
+	
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
+		
+	<head>
+		<!-- Meta -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+				
+		<!-- JS -->
+		<roo:js relativePath="/resources/dojo/dojo.js" />
+		<roo:js relativePath="/resources/spring/Spring.js" />
+		<roo:js relativePath="/resources/spring/Spring-Dojo.js" />
+		<script language="JavaScript" type="text/javascript">
+			dojo.require("dojo.parser");
+		</script>
+		<script type="text/javascript"><![CDATA[
+			function readCookie(name) {
+				var nameEQ = name + '=';
+				var ca = document.cookie.split(';');
+				for(var i=0;i < ca.length;i++) {
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1,c.length);
+					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+				}
+				return null;
+			}
+			var djConfig={locale:readCookie('locale')}; 
+		]]></script>
+		
+		<!-- Favicon -->
+		<spring:url value="/static/images/favicon.png" var="favicon" />
+		<link rel="SHORTCUT ICON" href="${favicon}" />
+		
+		<!-- Title -->
+		<spring:message code="application.name" var="app_name"/>
+		<title><spring:message code="welcome.h3" arguments="${app_name}" /></title>
+
+		<!-- Dojo CSS -->
+		<roo:css relativePath="/resources/dijit/themes/tundra/tundra.css" />
+		
+		<!-- Layout CSS (courtesy of Mike Stenhouse's CSS framework) -->
+		<roo:css relativePath="/resources/css-framework/css/tools.css" />
+		<roo:css relativePath="/resources/css-framework/css/typo.css" />
+		<roo:css relativePath="/resources/css-framework/css/forms.css" />
+		<roo:css relativePath="/resources/css-framework/css/layout-navtop-localleft.css" />
+		
+		<!-- Site CSS -->
+		<roo:css relativePath="/static/styles/cashflow.css" />
+	</head>
+   	<body id="page-home" class="tundra spring">
+    
+	    <div id="page">
+	    
+	        <div id="header" class="clearfix">
+	
+	            <div id="branding">
+					<spring:url value="/" var="home_url" />
+					<spring:url value="/static/images/blackboard.png" var="logo_url" />
+					<a href="${home_url}">
+	                	<img src="${logo_url}" alt="${app_name}" />
+	                </a>
+	            </div><!-- end branding -->
+	            
+	            <div id="username">
+	            	<c:set var="userPrincipal" value="${pageContext.request.userPrincipal}" />
+                    <c:if test="${not empty userPrincipal}">   
+                        <p>                  
+                            <spring:url var="logout" value="/static/j_spring_security_logout" />
+                            <a href="${logout}">
+                                <spring:message code="security.logout" />
+                                ${userPrincipal.principal.fullName}
+                            </a>
+                        </p>                               
+                    </c:if>                    
+            	</div><!-- end username -->
+            	
+	            <hr />
+	        </div><!-- end header -->
+	        
+	        <div id="content" class="clearfix">
+	        
+	            <div id="main">
+	            	<tiles:insertAttribute name="body" ignore="true" />                
+	                <hr />
+	            </div><!-- end main -->
+	            
+	            <div id="local">
+	            	<tiles:insertAttribute name="localnav" ignore="true" />                
+	            </div><!-- end local -->
+	            
+	            <div id="nav">
+	                <div class="wrapper">
+		                <h2 class="accessibility">Navigation</h2>
+		                <ul class="clearfix">
+		                
+		                	<!-- People -->
+		                	<sec:authorize access="hasRole('admin')">
+		                		<spring:url value="/person?page=1&amp;size=10" var="people_url" />
+		                    	<li>
+		                    		<a href="${people_url}">
+		                    			<spring:message code="label.people" />
+		                    		</a>
+		                    	</li>
+		                    </sec:authorize>
+		                    
+		                	<!-- Accounts -->
+		                    <li>
+		                		<spring:url value="/account?page=1&amp;size=10" var="accounts_url" />
+		                    	<spring:message code="label.accounts" var="accounts_label" />
+		                    	<a href="${accounts_url}">
+		                    		<spring:message code="label.my" arguments="${accounts_label}" />
+		                    	</a>
+		                    </li>
+		                    
+		                	<!-- About -->
+		                    <li class="last">
+	                			<spring:url value="/about/faq" var="about_url" />
+		                    	<a href="${about_url}">
+		                    		<spring:message code="label.about" />
+		                    	</a>
+		                    </li>
+		                </ul>
+	                </div>
+	                <hr />
+	
+	            </div><!-- end nav -->
+	            
+	        </div><!-- end content -->
+	        
+	        <div id="footer" class="clearfix">
+	            <p>&amp;copy; Andrew Swan 2010</p>
+	        </div><!-- end footer -->
+	        
+	    </div><!-- end page -->
+	    
+	</body>
+</html>

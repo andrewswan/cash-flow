@@ -1,0 +1,14 @@
+<jsp:root
+		xmlns:jsp="http://java.sun.com/JSP/Page"
+		xmlns:spring="http://www.springframework.org/tags"
+		version="2.0">
+	<jsp:output omit-xml-declaration="yes"/>
+
+	<!-- Creates the link to a JavaScript file -->
+	<jsp:directive.attribute name="relativePath" type="java.lang.String"
+	  required="true" description="The relative path to the JavaScript file"/>
+	
+	<spring:url value="${relativePath}" var="url"/>
+	<script src="${url}" type="text/javascript" ><!-- //required for FF3 and Opera --></script>
+    
+ </jsp:root>

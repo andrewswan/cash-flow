@@ -1,0 +1,13 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:roo="urn:jsptagdir:/WEB-INF/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <ul>
+    	<roo:menu_item relativePath="/about/help" messageCode="label.help" />
+    	<roo:menu_item relativePath="/about/faq" messageCode="label.faq" />
+    	<roo:menu_item relativePath="/about/credits" messageCode="label.credits" />
+    	<roo:menu_item relativePath="/about/releases" messageCode="label.releases" />
+    </ul>
+</div>

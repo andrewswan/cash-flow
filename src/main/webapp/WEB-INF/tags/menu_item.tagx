@@ -1,0 +1,18 @@
+<jsp:root
+		xmlns:jsp="http://java.sun.com/JSP/Page"
+		xmlns:spring="http://www.springframework.org/tags"
+		version="2.0">
+	<jsp:output omit-xml-declaration="yes"/>
+
+	<!-- Creates one menu item -->
+	<jsp:directive.attribute name="relativePath" type="java.lang.String"
+	  	required="true" description="The relative target of the link"/>
+	<jsp:directive.attribute name="messageCode" type="java.lang.String"
+	  	required="true" description="The code to translate for the link text"/>
+	
+	<li>
+		<spring:url value="${relativePath}" var="url"/>
+		<a href="${url}"><spring:message code="${messageCode}" /></a>
+	</li>
+    
+ </jsp:root>

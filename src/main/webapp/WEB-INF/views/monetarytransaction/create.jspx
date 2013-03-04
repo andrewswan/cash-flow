@@ -1,0 +1,90 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <script type="text/javascript">dojo.require('dijit.TitlePane');dojo.require('dijit.form.SimpleTextarea');dojo.require('dijit.form.DateTextBox');dojo.require('dijit.form.FilteringSelect');</script>
+    <div id="_title_div">
+        <spring:message code="label.monetarytransaction" var="entity_label"/>
+        <spring:message arguments="${entity_label}" code="entity.create" var="title_msg"/>
+        <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${title_msg}'}})); </script>
+        <spring:url value="/monetarytransaction" var="form_url"/>
+        <form:form action="${form_url}" method="POST" modelAttribute="monetaryTransaction">
+            <form:errors cssClass="errors" delimiter="&lt;p/&gt;"/>
+            <div id="roo_monetaryTransaction_description">
+                <label for="_description_id">Description:</label>
+                <form:textarea cssStyle="width:250px" id="_description_id" path="description"/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_description_id', widgetType: 'dijit.form.SimpleTextarea', widgetAttrs: {}})); </script>
+                <br/>
+                <form:errors cssClass="errors" id="_description_error_id" path="description"/>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_nextDate">
+                <label for="_nextDate_id">Next Date:</label>
+                <form:input cssStyle="width:250px" id="_nextDate_id" maxlength="30" path="nextDate" size="0"/>
+                <br/>
+                <form:errors cssClass="errors" id="_nextDate_error_id" path="nextDate"/>
+                <spring:message arguments="Next Date" code="field.invalid" var="field_invalid"/>
+                <spring:message code="field.required" var="field_required"/>
+                <spring:message argumentSeparator="," arguments="Next Date,(${field_required})" code="field.simple.validation" var="field_validation"/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_nextDate_id', widgetType : 'dijit.form.ValidationTextBox', widgetAttrs : {promptMessage: '${field_validation}', invalidMessage: '${field_invalid}', required : true}})); </script>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_nextDate_id', widgetType : 'dijit.form.DateTextBox', widgetAttrs : {promptMessage: '${field_validation}', constraints: {datePattern : '${monetaryTransaction_nextDate_date_format}', required : false}, datePattern : '${monetaryTransaction_nextDate_date_format}'}})); </script>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_amount">
+                <label for="_amount_id">Amount:</label>
+                <form:input cssStyle="width:250px" id="_amount_id" maxlength="30" path="amount" size="0"/>
+                <br/>
+                <form:errors cssClass="errors" id="_amount_error_id" path="amount"/>
+                <spring:message arguments="Amount" code="field.invalid" var="field_invalid"/>
+                <spring:message code="field.required" var="field_required"/>
+                <spring:message argumentSeparator="," arguments="Amount,(${field_required})" code="field.simple.validation" var="field_validation"/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_amount_id', widgetType : 'dijit.form.ValidationTextBox', widgetAttrs : {promptMessage: '${field_validation}', invalidMessage: '${field_invalid}', required : true}})); </script>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_lastDate">
+                <label for="_lastDate_id">Last Date:</label>
+                <form:input cssStyle="width:250px" id="_lastDate_id" maxlength="30" path="lastDate" size="0"/>
+                <br/>
+                <form:errors cssClass="errors" id="_lastDate_error_id" path="lastDate"/>
+                <spring:message arguments="Last Date" code="field.invalid" var="field_invalid"/>
+                <spring:message code="field.required" var="field_required"/>
+                <spring:message argumentSeparator="," arguments="Last Date," code="field.simple.validation" var="field_validation"/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_lastDate_id', widgetType : 'dijit.form.ValidationTextBox', widgetAttrs : {promptMessage: '${field_validation}', invalidMessage: '${field_invalid}', required : false}})); </script>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_lastDate_id', widgetType : 'dijit.form.DateTextBox', widgetAttrs : {promptMessage: '${field_validation}', constraints: {datePattern : '${monetaryTransaction_lastDate_date_format}', required : false}, datePattern : '${monetaryTransaction_lastDate_date_format}'}})); </script>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_recurrenceInterval">
+                <label for="_recurrenceInterval_id">Recurrence Interval:</label>
+                <form:input cssStyle="width:250px" id="_recurrenceInterval_id" maxlength="30" path="recurrenceInterval" size="0"/>
+                <br/>
+                <form:errors cssClass="errors" id="_recurrenceInterval_error_id" path="recurrenceInterval"/>
+                <spring:message code="field.invalid.integer" var="field_invalid"/>
+                <spring:message code="field.required" var="field_required"/>
+                <spring:message argumentSeparator="," arguments="Recurrence Interval," code="field.simple.validation" var="field_validation"/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_recurrenceInterval_id', widgetType : 'dijit.form.ValidationTextBox', widgetAttrs : {promptMessage: '${field_validation}', invalidMessage: '${field_invalid}', regExp: '-?[0-9]*', required : false}})); </script>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_recurrenceType">
+                <label for="_recurrenceType_id">Recurrence Type:</label>
+                <form:errors cssClass="errors" id="_recurrenceType_error_id" path="recurrenceType"/>
+                <form:select cssStyle="width:250px" id="_recurrenceType_id" items="${recurrencetype_enum}" path="recurrenceType"/>
+                <br/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_recurrenceType_id', widgetType: 'dijit.form.FilteringSelect', widgetAttrs : {hasDownArrow : true}})); </script>
+            </div>
+            <br/>
+            <div id="roo_monetaryTransaction_account">
+                <c:if test="${not empty accounts}">
+                    <label for="_account_id">Account:</label>
+                    <form:select cssStyle="width:250px" id="_account_id" path="account">
+                        <form:options itemValue="id" items="${accounts}"/>
+                    </form:select>
+                    <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_account_id', widgetType: 'dijit.form.FilteringSelect', widgetAttrs : {hasDownArrow : true}})); </script>
+                </c:if>
+            </div>
+            <br/>
+            <div class="submit" id="roo_monetaryTransaction_submit">
+                <spring:message code="button.save" var="save_button"/>
+                <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+                <input id="proceed" type="submit" value="${save_button}"/>
+            </div>
+        </form:form>
+    </div>
+</div>
